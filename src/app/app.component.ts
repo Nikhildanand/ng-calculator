@@ -27,6 +27,11 @@ export class AppComponent {
     this.output = '0';
   }
 
+  trimOutput(output: string): void {
+    const maxLength = output.includes('.') ? 14 : 13;
+    this.output = output.substr(0, maxLength);
+  }
+
   createString(key: string) {
     if (this.previousState === STATES.OPERATOR) {
       this.firstOperand = +this.output;
@@ -45,24 +50,25 @@ export class AppComponent {
           this.output = String(key);
         }
       }
-      if (key === '.') {
+      if (key === '.' && !this.output.includes(key)) {
         this.output += key;
       }
     }
+    this.trimOutput(this.output);
     this.secondOperand = +this.output;
   }
 
   calculate(): void {
     switch (this.operator) {
-      case '+': this.output = String(this.firstOperand + this.secondOperand);
+      case '+': this.trimOutput(String(this.firstOperand + this.secondOperand));
                 break;
-      case '-': this.output = String(this.firstOperand - this.secondOperand);
+      case '-': this.trimOutput(String(this.firstOperand - this.secondOperand));
                 break;
-      case '*': this.output = String(this.firstOperand * this.secondOperand);
+      case '*': this.trimOutput(String(this.firstOperand * this.secondOperand));
                 break;
-      case '/': this.output = String(this.firstOperand / this.secondOperand);
+      case '/': this.trimOutput(String(this.firstOperand / this.secondOperand));
                 break;
-      default: this.output = String(this.firstOperand + this.secondOperand);
+      default: this.trimOutput(String(this.firstOperand + this.secondOperand));
     }
   }
 

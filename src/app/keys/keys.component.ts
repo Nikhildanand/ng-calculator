@@ -16,7 +16,7 @@ export class KeysComponent implements OnInit {
   operators: string[] = ['+', '-', '*', '/'];
   numbers: string[] = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0'];
   specialKeys: string[] = ['.', 'AC'];
-  isDepressedClass = false;
+  isDepressed = false;
 
   ngOnInit(): void {
   }
@@ -39,12 +39,12 @@ export class KeysComponent implements OnInit {
   }
 
   operatorKeyPress(key: string) {
-    this.isDepressedClass = true;
+    this.isDepressed = true;
     this.getKeyPress.emit({ key, type: 'operator' });
   }
 
   keyPress(key: string): void {
-    this.isDepressedClass = false;
+    this.isDepressed = false;
     this.getKeyPress.emit({ key, type: 'operand' });
   }
 

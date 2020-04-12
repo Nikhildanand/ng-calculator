@@ -3,14 +3,13 @@
     *ngFor="let key of operators"
     class="key_operator"
     (click)="operatorKeyPress(key)"
-    [ngClass]="{'is-depressed': isDepressedClass}"
+    [disabled]="isDepressed"
   >
     {{key}}
   </button>
   <button
     *ngFor="let key of numbers"
     (click)="keyPress(key)"
-
   >
     {{key}}
   </button>
