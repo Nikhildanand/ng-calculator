@@ -1,0 +1,28 @@
+<div class="calculator__keys">
+  <button
+    *ngFor="let key of operators"
+    class="key_operator"
+    (click)="operatorKeyPress(key)"
+    [ngClass]="{'is-depressed': isDepressedClass}"
+  >
+    {{key}}
+  </button>
+  <button
+    *ngFor="let key of numbers"
+    (click)="keyPress(key)"
+
+  >
+    {{key}}
+  </button>
+  <button
+    (click)="keyPress('.')"
+  >
+    .
+  </button>
+  <button
+    (click)="clearKeyPress()"
+  >
+    AC
+  </button>
+  <button class="key_equal" (click)="calculate()">=</button>
+</div>
